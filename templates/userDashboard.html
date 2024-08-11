@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="static/css/userDashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>User Dashboard</h1>
+        <div class="menu">
+            <button class="menu-button">Menu &#9662;</button>
+            <div class="menu-content">
+                <a href="{{ url_for('viewProfile') }}">View Particular</a>
+                <a href="{{ url_for('updateProfile') }}">Update Particular</a>
+                <a href="{{ url_for('submitFeedback') }}">Submit Feedback</a>
+                <form method="POST" action="/deleteProfile" onsubmit="return confirm('Are you sure you wish to delete your account?');">
+                    <button type="submit" class="menu-item">Delete Account</button>
+                </form>
+                {% if success %}
+                <p class=success><strong></strong> {{ success }}
+                {% endif %}
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <form method="POST" action="/userDashboard">
+        <section id="search-section">
+            <input type="text" id="search-bar" placeholder="Search for stock" name="stockTicker">
+            <input type="hidden" name="button_identifier" value="search_button">
+            <button type="submit" class="icon-button">
+                <i class="fa fa-search"></i>
+                <span class="tooltip">Search</span>
+            </button>
+        </section>
+    </form>
+
+    <a href="{{url_for('watchlistView')}}">My WatchList</a>
+
+    <footer>
+        <p>Stock Market Dashboard © 2024</p>
+    </footer>
+</body>
+{% endblock %}
+</html>

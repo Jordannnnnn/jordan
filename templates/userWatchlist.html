@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Dashboard</title>
+    <link rel="stylesheet" href="static/css/userWatchlist.css">
+</head>
+<body>
+    <header>
+        <h1>User Dashboard</h1>
+        <div id="user-info">
+            {% if success %}
+            <p class=success><strong></strong> {{ success }}
+            {% endif %}
+            <a href="{{url_for('userDashboard')}}">Back</a>
+            <a href="{{url_for('logout')}}">Logout</a>
+        </div>
+    </header>
+
+    <form method="POST" action="/watchlistAction">
+    <section id="watchlist">
+        <h2>My Watchlist</h2>
+        <ul id="watchlist-items">
+        {% for items in userWatchlist %}
+            <li>
+                <input type="hidden" name="button_identifier" value="watchlist_button">
+                <h4>{{items}}</h4>
+                <h4><button type="submit" name="removeStock" value={{items}}>Remove</button></h4>
+                <label for="numOfDays">Number of Days:</label>
+                <h4><input type="number" name="numOfDays" min=10 max=50000 placeholder="Optional"></h4>
+                <h4><button type="submit" name="displayStock" value={{items}}>Display Graph</button></h4>
+            </li>
+        {% endfor %}
+        </ul>
+    </section>
+    </form>
+
+    <footer>
+        <p>Stock Market Dashboard © 2024</p>
+    </footer>
+
+    <script src="jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+    </script>
+
+    </script>
+
+</body>
+{% endblock %}
+</html>

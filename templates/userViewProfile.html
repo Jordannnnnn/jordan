@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% extends "layout.html" %}
+{% block body %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="static/css/userViewProfile.css">
+</head>
+<body>
+    <header>
+        <h1>User Particular</h1>
+    </header>
+    <div class="user-details">
+        <main class="content">
+            <h2>Your Particular</h2>
+            <table class="profile-table">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in details %}
+                    <tr>
+                        <td>{{ item[0] }}</td>
+                        <td>{{ item[1] }}</td>
+                        <td>{{ item[2] }}</td>
+                        <td>{{ item[3] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </main>
+        <p>
+            <a href="/userDashboard" class="button">Back</a>
+        </p>
+    </div>
+    
+    <footer>
+        <p>Stock Market Service © 2024</p>
+    </footer>
+</body>
+{% endblock %}
+</html>

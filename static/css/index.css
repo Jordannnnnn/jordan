@@ -1,0 +1,215 @@
+/* General Body Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('../images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #ddd; /* Light gray text */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Ensures center alignment of all children */
+    min-height: 100vh; /* Full viewport height */
+}
+
+header {
+    background-color: #284B63; /* Dark blue */
+    color: #F8F9FA;
+    padding: 10px 20px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.auth-buttons button {
+    background-color: #406882; /* Medium blue */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.auth-buttons button:hover {
+    background-color: #30576e; /* Slightly darker blue */
+}
+
+.search-section {
+    width: 100%; /* Full width */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.4); /* More opaque for visibility */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Adding shadow for emphasis */
+    margin-top: 20px;
+}
+
+.search-input {
+    padding: 10px;
+    width: 300px; /* Fixed width */
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    color: #333; /* Dark text for better visibility */
+}
+
+.search-button {
+    background-color: #406882;/* Bright blue */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px; /* Adjust size as needed */
+    text-align: center;
+}
+
+.search-button:hover {
+    background-color:  #30576e; /* Darker blue */
+}
+
+
+.stock-display {
+    width: 100%; /* Full width */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.4); /* More opaque for visibility */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Adding shadow for emphasis */
+    margin-top: 60px; /* Added margin at the top for spacing */
+}
+
+
+.stock-list .stock {
+    display: block;
+    background-color: #FFFFFF;
+    color: #333; /* Dark text for contrast */
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.2);
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
+}
+
+.stock-list .stock:hover {
+    background-color: #f0f0f0; /* Light grey for hover effect */
+}
+
+footer {
+    background-color: #284B63; /* Dark blue matching the header */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    box-sizing: border-box;
+}
+
+.content {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.95); /* Slightly more opaque for better legibility */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* More refined shadow for a smoother look */
+    color: #333; /* Dark grey for readability */
+    font-size: 16px; /* Adjust font size for better readability */
+    line-height: 1.6; /* Increase line height for better text flow */
+    border: 1px solid rgba(0,0,0,0.1); /* Subtle border for a defined edge */
+    transition: box-shadow 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
+
+.content h2, .content h3 {
+    color: #205478; /* Dark blue for headers to add contrast */
+    font-weight: 600; /* Semi-bold for better emphasis */
+}
+
+.content ol {
+    padding-left: 20px; /* More space inside ordered lists */
+    counter-reset: item; /* Reset counter for custom numbering */
+}
+
+.content li {
+    margin-bottom: 10px; /* Space between list items */
+    counter-increment: item; /* Increment counter for each item */
+    position: relative; /* For pseudo-element positioning */
+}
+
+.content li:before {
+    content: counter(item) ". "; /* Add numbering before each list item */
+    position: absolute; /* Position absolutely within the li */
+    left: -20px; /* Shift to the left of the list content */
+    top: 0; /* Align to top */
+    color: #205478; /* Dark blue to match headers */
+    font-weight: bold; /* Bold numbering */
+}
+
+/* Enhance interactivity */
+.content:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3); /* Deeper shadow on hover for dynamic effect */
+}
+
+/* Responsive design improvements */
+@media (max-width: 768px) {
+    .content {
+        padding: 20px;
+        font-size: 14px; /* Smaller font on smaller screens */
+    }
+}
+
+.search-button {
+    position: relative;
+    border: none;
+    background: none;
+    cursor: pointer;
+    background-color: #406882;
+}
+
+.tooltip {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.search-button:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+

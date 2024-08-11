@@ -1,0 +1,96 @@
+/* General Body and Container Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('../images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #ddd; /* Light gray text */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Ensures center alignment of all children */
+    min-height: 100vh; /* Full viewport height */
+}
+
+header {
+    background-color: #284B63; /* Dark blue */
+    color: #F8F9FA;
+    padding: 10px 20px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.back-button {
+    background-color: #406882; /* Medium blue */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    margin-left: auto; /* Pushes the button to the far right */
+}
+
+.back-button:hover {
+    background-color: #30576e;
+}
+
+.form-container {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #000;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    width: 100%;
+    color: #000;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    
+}
+
+button {
+    background-color: #406882; /* Medium blue */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    width: 100%; /* Ensures button stretches to the full width of its container */
+}
+
+button:hover {
+    background-color: #30576e; /* Slightly darker blue */
+}
+
+footer {
+    background-color: #284B63;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

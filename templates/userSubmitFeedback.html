@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - Stock Market Dashboard</title>
+    <link rel="stylesheet" href="static/css/userSubmitFeedback.css">
+</head>
+<body>
+    <header>
+        <h1>Feedback Form</h1>
+        <div id="user-info">
+            {% if success %}
+            <p class="success"><strong>Success:</strong> {{ success }}</p>
+            {% endif %}
+        </div>
+    </header>
+
+    <section id="feedback-form">
+        <h2>Submit Your Feedback</h2>
+        <form method="POST" action="/submitFeedback">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="feedbackTitle" value="{{ request.form['feedbackTitle'] or '' }}" required>
+            </div>
+            <div class="form-group">
+                <label for="feedbackContent">Message:</label>
+                <textarea id="feedbackContent" name="feedbackContent" placeholder="Message Content" rows="6" cols="50" required></textarea>
+            </div>
+            <input type="hidden" name="button_identifier" value="feedback_button">
+            <button type="submit" class="button">Submit</button>
+            <a href="{{ url_for('userDashboard') }}" class="button">Back</a>
+        </form>
+    </section>
+
+    <footer>
+        <p>Stock Market Dashboard © 2024</p>
+    </footer>
+    <script src="jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+    </script>
+
+    </script>
+</body>
+{% endblock %}
+</html>

@@ -1,0 +1,80 @@
+/* General Body Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    overflow-y: auto;
+}
+
+header {
+    background-color: #3C3F41;
+    color: #F8F9FA;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.auth-buttons button {
+    background-color: #6C757D;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.auth-buttons button:hover {
+    background-color: #5A6268;
+}
+
+.main-container {
+    text-align: center;
+    padding: 20px;
+}
+
+img {
+    height: 450px;
+    width: auto;
+}
+
+footer {
+    background-color: #3C3F41;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
+
+input[type="submit"],
+a {
+    flex: 1;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 8px; /* Reduced padding */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    margin: 5px; /* Add margin to ensure space between buttons */
+}
+
+input[type="submit"]:hover,
+a:hover {
+    background-color: #0056b3;
+}
+
+

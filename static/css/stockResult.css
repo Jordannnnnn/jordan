@@ -1,0 +1,123 @@
+/* General Body Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4; /* Light grey for a clean look */
+    color: #333; /* Darker text for better readability */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    width: 100%;
+    background-color: #284B63; /* Dark blue */
+    color: #F8F9FA;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#user-info a {
+    color: #F8F9FA;
+    text-decoration: none;
+    padding: 15px 15px;
+    border-radius: 4px;
+    background-color:  #406882; /* Lighter blue for buttons */
+    font-size: 16px;
+}
+
+#user-info a:hover {
+    background-color:  #30576e; /* Darker blue on hover */
+}
+
+/* Section and Content Styling */
+#watchlist {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    width: 90%;
+    max-width: 800px;
+    margin: 30px auto;
+}
+
+h2 {
+    color: #284B63; /* Header color to match the theme */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    
+    
+}
+
+.buttons button, .buttons a {
+    background-color:#406882; /* Consistent button color */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    
+}
+
+.buttons button:hover, .buttons a:hover {
+    background-color:  #30576e;
+}
+
+.stock-info {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#loading, #charts {
+    text-align: center;
+    margin-top: 20px;
+}
+
+footer {
+    width: 100%;
+    background-color: #284B63;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+}
+
+#stock_forecast_image {
+    height: 375px;
+    width: auto;
+}
+
+#trend_analysis_image {
+    height: 500px;
+    width: auto;
+}

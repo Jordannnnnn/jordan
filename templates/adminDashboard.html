@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="static/css/adminDashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <div class="menu">
+            <button class="menu-button">Menu &#9662; </button>
+            <div class="menu-content">
+                <a href="{{ url_for('viewFeedback') }}">View Feedback</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <main class="content">
+            <form method="POST" action="/adminSearch">
+                <section id="user-search">
+                    <h2>Search User</h2>
+                    <input type="text" id="search-bar" placeholder="Enter user name..." name="username">
+                    <button type="button" class="icon-button" onclick="searchUser()">
+                        <i class="fa fa-search"></i>
+                        <span class="tooltip">Search Users</span>
+                    </button>
+                    {% if error %}
+                    <p class="error"><strong>Error:</strong> {{ error }}</p>
+                    {% endif %}
+                </section>
+            </form>
+        </main>
+    </div>
+    
+    <footer>
+        <p>Admin Dashboard © 2024</p>
+    </footer>
+
+    <script>
+        function searchUser() {
+            const searchValue = document.getElementById('search-bar').value;
+        }
+
+    </script>
+
+
+</body>
+{% endblock %}
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends "layout.html" %}
+{% block body %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Service</title>
+    <link rel="stylesheet" href="static/css/userSearchStock.css"> 
+</head>
+<body>
+    <header>
+        <h1>MarketProphet</h1>
+    </header>
+
+    <form method="POST" action="/">
+    {% if plot %}
+    <div class="main-container">  
+            
+            <div class="graph-container">
+            <img src="static/images/user_graph.png" alt="graph image" />
+            </div>
+            <div class="buttons-container">
+            <p>
+            <a href="/userDashboard">Return to Dashboard</a>
+            </p>
+            </div>
+    </div> 
+    {% endif %}
+    </form>
+    
+
+    <footer>
+        <p>Stock Market Service © 2024</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <!--<script>
+        function searchStocks() {
+            const searchTerm = document.getElementById('stock-search').value;
+            // AJAX call to server to fetch stocks based on searchTerm
+            // Dynamically update the DOM with the search results
+        }
+    </script> -->
+</body>
+{% endblock %}
+</html>

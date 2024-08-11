@@ -1,0 +1,132 @@
+/* General Body Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4; /* Light grey background for a clean look */
+    color: #333; /* Dark text for readability */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    width: 100%;
+    background-color: #284B63; /* Dark blue header */
+    color: #F8F9FA; /* Light text for contrast */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* User Information Styles */
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info a {
+    color: #F8F9FA;
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color: #406882; /* Medium blue for buttons */
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.user-info a:hover {
+    background-color: #30576e; /* Darker blue on hover */
+}
+
+/* Main Content Styles */
+.content {
+    width: 100%;
+    max-width: 800px;
+    background-color: #ffffff; /* White background for content */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25); /* Shadow for depth */
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.icon-button {
+    position: relative; /* Needed to position the tooltip */
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #4072B4;
+    padding: 10px;
+}
+
+.icon-button:hover::after {
+    content: attr(title); /* Display the title content */
+    position: absolute;
+    top: -35px; /* Position the tooltip above the button */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 10px;
+    color: #fff;
+    background-color: #000000;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 10; /* Ensure it's above other content */
+}
+
+.icon-button:hover::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 10px;
+    height: 10px;
+    background-color: #4072B4;
+    z-index: 9;
+}
+
+
+.back-button {
+    background-color: transparent;
+    color: #F8F9FA;
+    text-decoration: none;
+    font-size: 20px;  /* Increased font size */
+    padding: 10px 15px;  /* Increased padding */
+    border-radius: 8px;  /* Smooth rounded corners */
+    transition: color 0.3s, background-color 0.3s;
+    
+}
+
+.back-button:hover {
+    color: #DDEEFF;
+    background-color: #3A506B;  /* More noticeable hover effect */
+    text-decoration: none;  /* Optional: remove underline on hover */
+}
+
+/* Footer Styles */
+footer {
+    width: 100%;
+    background-color: #284B63;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;
+    bottom: 0;
+}
+
+

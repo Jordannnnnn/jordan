@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="static/css/login.css">
+    <!-- Optional: Add a link to a font awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>MarketProphet</h1>
+        <a href="/" class="back-button">Back</a>
+    </header>
+
+    <div class="login-container">
+        <h2>Login to Your Account</h2>
+        <form id="loginForm" action="/login" method="post" class="login-form">
+            <div class="input-group">
+                <i class="fa fa-user icon"></i>
+                <input type="text" id="username" name="username" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <i class="fa fa-lock icon"></i>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="login-button">Log In</button>
+            <p class="register-link">Don’t have an account? <a href="/register">Register</a></p>
+        </form>
+        {% if error %}
+        <p class=error><strong>Error:</strong> {{ error }}
+        {% endif %}
+    </div>
+    
+
+    <footer>
+        <p>Stock Market Service © 2024</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('loginForm');
+            const username = document.getElementById('username');
+            const password = document.getElementById('password');
+
+            username.addEventListener('input', validateUsername);
+            password.addEventListener('input', validatePassword);
+
+            form.addEventListener('submit', function(event) {
+                validateUsername();
+                validatePassword();
+
+                if (document.querySelectorAll('.error-message:empty').length !== document.querySelectorAll('.error-message').length) {
+                    event.preventDefault();
+                }
+            });
+
+            function validateUsername() {
+                const error = document.getElementById('usernameError');
+                if (!username.value) {
+                    error.textContent = 'Username is required';
+                } else {
+                    error.textContent = '';
+                }
+            }
+
+            function validatePassword() {
+                const error = document.getElementById('passwordError');
+                if (!password.value) {
+                    error.textContent = 'Password is required';
+                } else {
+                    error.textContent = '';
+                }
+            }
+        });
+    </script>
+</body>
+{% endblock %}
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Page</title>
+    <link rel="stylesheet" href="static/css/adminViewFeedback.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Feedbacks from Users</h1>
+        <div class="user-info">
+            <a href="{{url_for('adminDashboard')}}">Back</a>
+        </div>
+    </header>
+
+    <main class="content">
+        <h2>Feedbacks Received</h2>
+        <ul id="feedback-items">
+            {% for items in feedback %}
+            <li>
+                <h4>Title: {{items[1]}}</h4>
+                <h4>Content: {{items[2]}}</h4>
+                <form method="POST" action="/deleteFeedback" onsubmit="return confirm('Are you sure you wish to delete this feedback?');">
+                    <button type="submit" name="deleteFeedback" value="{{items[0]}}" class="icon-button">
+                        <i class="fas fa-trash-alt"></i>
+                        <span class="tooltip">Delete</span>
+                    </button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    </main>
+
+    <footer>
+        <p>Admin Dashboard © 2024</p>
+    </footer>
+    <script>
+        function searchUser() {
+            const searchValue = document.getElementById('search-bar').value;
+        }
+
+    </script>
+</body>
+{% endblock %}
+</html>

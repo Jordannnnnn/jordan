@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Particular Page</title>
+    <link rel="stylesheet" href="static/css/adminUpdateUserParticular.css"> 
+</head>
+<body>
+    <header>
+        <h1>Edit Particular</h1>
+        <div class="user-info">
+            <a href="{{url_for('adminDashboard')}}">Back</a>
+        </div>
+    </header>
+    <div class="update-content">
+        <main class="content">
+            <form method="POST">
+                <h2>Edit User Particulars</h2>
+                {% for items in userDetails %}
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" value={{items[0]}} readonly>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" value={{items[1]}}>
+                </div>
+                <div class="form-group">
+                    <label for="fname">First Name:</label>
+                    <input type="text" name="fname" value={{items[2]}}>
+                </div>
+                <div class="form-group">
+                    <label for="lname">Last Name:</label>
+                    <input type="text" name="lname" value={{items[3]}}>
+                </div>
+                <input type="hidden" name="button_identifier" value="admin_button">
+                <button type="submit" class="button" name="updateUserDetails">Update Details</button>
+                {% endfor %}
+            </form>
+        </main>
+    </div>
+    <footer>
+        <p>Admin Dashboard © 2024</p>
+    </footer>
+    <script>
+        function searchUser() {
+            const searchValue = document.getElementById('search-bar').value;
+        }
+
+    </script>
+</body>
+{% endblock %}
+</html>

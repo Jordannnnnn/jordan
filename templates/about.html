@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% extends "layout.html" %}
+{% block body %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Market Prophet</title>
+    <link rel="stylesheet" href="static/css/index.css">
+</head>
+<body>
+    <header>
+        <h1>MarketProphet</h1>
+        <div class="auth-buttons">
+            <button onclick="location.href='/login'">Login</button>
+            <button onclick="location.href='/register'">Register</button>
+            <button onclick="location.href='/'">Back</button>
+        </div>
+    </header>
+
+    <section class="content">
+        <h2>Welcome to Market Prophet — Your Advanced Guide to the Stock Market</h2>
+        <p>At Market Prophet, we specialize in leveraging cutting-edge technology to empower investors with precision forecasting and tailored stock recommendations. Our mission is to demystify the stock market, making it accessible and actionable for traders of all levels.</p>
+
+        <h3>How Our Service Works</h3>
+        <ol>
+            <li><strong>Real-Time Data Acquisition:</strong> Our platform seamlessly integrates with major stock exchanges via RESTful APIs and advanced streaming platforms. This integration allows us to capture real-time stock market data, ensuring that our users receive the most current information directly on their dashboard.</li>
+            <li><strong>Advanced Predictive Analytics:</strong> At the core of our service is a sophisticated machine learning engine designed by leading data scientists. Our models analyze vast amounts of historical and real-time data to predict stock trends with high accuracy. These predictions power both the forecasting service provided to our users and the personalized stock recommendations.</li>
+            <li><strong>Dynamic Updates:</strong> The stock market is ever-changing, and so are our algorithms. We continually update our machine learning models with the latest data, refining our predictions to adapt to new market conditions. This process ensures that our recommendations remain relevant and that our users stay ahead of market trends.</li>
+            <li><strong>User-Focused Interface:</strong> Our user-friendly frontend application is designed to present complex data in an understandable format. Whether you are looking to keep an eye on your favorite stocks or need comprehensive analytics, our dashboard provides all the information you need at your fingertips.</li>
+        </ol>
+
+        <h3>Our Commitment to Innovation</h3>
+        <p>At Market Prophet, innovation is at the heart of everything we do. We are constantly exploring new technologies and methodologies to enhance our services and provide our users with the best possible investment tools. Our team is committed to continuous improvement and excellence in the fintech space.</p>
+
+        <p>We Provide Free-trial period of 7 days for you to enjoy our service and to decide if you want to join as monthly membership.</p>
+
+        <h3>Join Us</h3>
+        <p>Whether you’re a seasoned investor or just starting out, Market Prophet offers the tools, insights, and support you need to navigate the stock market confidently. Register today to start your journey towards smarter investing.</p>
+    </section>
+
+    <footer>
+        <p>Stock Market Service © 2024</p>
+    </footer>
+
+</body>
+{% endblock %}
+</html>

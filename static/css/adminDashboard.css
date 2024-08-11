@@ -1,0 +1,176 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    width: 100%;
+    background-color: #284B63;
+    color: #F8F9FA;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Dropdown Menu Styles */
+.menu-button {
+    background-color: #406882; /* Medium blue */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.menu {
+    position: relative;
+    display: inline-block;
+}
+
+.menu-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    right: 0;
+    top: 100%;
+    z-index: 1;
+}
+
+.menu:hover .menu-content {
+    display: block;
+}
+
+.menu-content a {
+    color: #333;
+    padding: 12px 16px;
+    display: block;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.menu-content a:hover {
+    background-color: #f0f0f0;
+}
+
+
+.show {
+    display: block;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    width: 100%;
+    padding: 20px;
+}
+
+#user-search {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#search-bar {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+footer {
+    width: 100%;
+    background-color: #284B63;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+}
+
+/* Search Button Styles */
+.icon-button {
+    background-color: #406882;/* Bright blue */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px; /* Adjust size as needed */
+    text-align: center;
+}
+
+.icon-button:hover {
+    background-color:  #30576e; /* Darker shade for hover effect */
+}
+
+/* Dropdown Menu Styles */
+.menu-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.fa-bars {
+    font-size: 16px;
+}
+
+.icon-button {
+    position: relative;
+    border: none;
+    cursor: pointer;
+    background: none;
+    background-color: #406882; /* Removes any default styling if it's not needed */
+}
+
+.tooltip {
+    visibility: hidden;
+    width: 100px; /* Adjust based on your content */
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%; /* Adjust this value based on your layout */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.icon-button:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Particular</title>
+    <link rel="stylesheet" href="static/css/userUpdateParticular.css">
+</head>
+<body>
+    <header>
+        <h1>MarketProphet - Update Particular</h1>
+    </header>
+    <section id="update-profile-section">
+        <h2>Update Your Particular</h2>
+        <form id="updateForm" action="/updateProfile" method="post" class="form-container">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required pattern="[A-Za-z0-9]{5,}" title="Username must be at least 5 characters long and contain only letters and numbers.">
+                <span class="error-message" id="usernameError"></span>
+            </div>
+            <div class="form-group">
+                <label for="firstName">Email:</label>
+                <input type="text">
+            </div>
+            <div class="form-group">
+                <label for="current_password">Current Password:</label>
+                <input type="password" id="current_password" name="current_password" required>
+            </div>
+            <div class="form-group">
+                <label for="new_password">New Password:</label>
+                <input type="password" id="new_password" name="new_password" minlength="8" title="Password must be at least 8 characters long.">
+                <span class="error-message" id="passwordError"></span>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirm New Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" minlength="8" title="Please enter the same password as above.">
+                <span class="error-message" id="confirmPasswordError"></span>
+            </div>
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="fname">
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lname">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="button">
+                <a href="/userDashboard" class="button">Back</a>
+            </div>
+            {% if error %}
+            <p class="error"><strong>Error:</strong> {{ error }}</p>
+            {% endif %}
+            {% if success %}
+            <p class="success"><strong>{{ success }}</strong></p>
+            {% endif %}
+        </form>
+    </section>
+
+    <footer>
+        <p>Stock Market Service © 2024</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('updateForm');
+            const username = document.getElementById('username');
+            const email = document.getElementById('email');
+            const new_password = document.getElementById('new_password');
+            const confirmPassword = document.getElementById('confirm_password');
+
+            username.addEventListener('input', validateUsername);
+            email.addEventListener('input', validateEmail);
+            new_password.addEventListener('input', validatePassword);
+            confirmPassword.addEventListener('input', validateConfirmPassword);
+
+            form.addEventListener('submit', function(event) {
+                validateUsername();
+                validateEmail();
+                validatePassword();
+                validateConfirmPassword();
+
+                if (document.querySelectorAll('.error-message:empty').length !== document.querySelectorAll('.error-message').length) {
+                    event.preventDefault();
+                }
+            });
+
+            function validateUsername() {
+                const error = document.getElementById('usernameError');
+                if (!username.value) {
+                    error.textContent = 'Username is required';
+                } else if (!username.validity.valid) {
+                    error.textContent = username.title;
+                } else {
+                    error.textContent = '';
+                }
+            }
+
+            function validateEmail() {
+                const error = document.getElementById('emailError');
+                if (!email.value) {
+                    error.textContent = 'Email is required';
+                } else if (!email.validity.valid) {
+                    error.textContent = 'Please enter a valid email address';
+                } else {
+                    error.textContent = '';
+                }
+            }
+
+            function validatePassword() {
+                const error = document.getElementById('passwordError');
+                if (new_password.value && !new_password.validity.valid) {
+                    error.textContent = new_password.title;
+                } else {
+                    error.textContent = '';
+                }
+            }
+
+            function validateConfirmPassword() {
+                const error = document.getElementById('confirmPasswordError');
+                if (confirmPassword.value && new_password.value !== confirmPassword.value) {
+                    error.textContent = 'Passwords do not match';
+                } else {
+                    error.textContent = '';
+                }
+            }
+        });
+    </script>
+</body>
+{% endblock %}
+</html>

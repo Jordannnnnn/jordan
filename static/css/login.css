@@ -1,0 +1,113 @@
+/* General Body and Container Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('../images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width: 100%;
+    background-color: #284B63;
+    color: #F8F9FA;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.login-container {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px 10px 10px 40px; /* Adjust left padding to accommodate the icon */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box; /* Ensures padding is included in the width calculation */
+}
+
+.icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+    z-index: 10; /* Ensure icon is above the input field */
+}
+
+
+.login-button {
+    background-color: #406882;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #30576e; 
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-link a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #284B63;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+.back-button {
+    background-color: #406882; /* Medium blue */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    margin-left: auto; /* Pushes the button to the far right */
+}
+
+.back-button:hover {
+    background-color: #30576e; /* Slightly darker blue */
+}

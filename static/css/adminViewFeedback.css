@@ -1,0 +1,110 @@
+/* General Body Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4; /* Light grey for a clean look */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+header {
+    width: 100%;
+    background-color: #284B63;
+    color: #F8F9FA;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-info a {
+    color: #F8F9FA;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #406882;
+    border-radius: 5px;
+}
+
+.user-info a:hover {
+    background-color: #30576e;
+}
+
+.content {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    margin-top: 30px;
+}
+
+#feedback-items li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    list-style: none;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #4072B4;
+    font-size: 20px;
+    position: relative;
+}
+
+.icon-button:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip {
+    visibility: hidden;
+    width: 100px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -50px;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+footer {
+    width: 100%;
+    background-color: #284B63;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+}
+
+/* Responsive styles for better mobile viewing */
+@media (max-width: 768px) {
+    .content, .user-info a {
+        padding: 10px;
+    }
+}

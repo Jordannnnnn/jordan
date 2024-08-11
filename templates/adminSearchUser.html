@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Searched User Page</title>
+    <link rel="stylesheet" href="static/css/adminSearchUser.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Searched Result</h1>
+        <div class="user-info">
+            <a href="{{url_for('adminDashboard')}}" class="back-button"></i> Back</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <main class="content">
+            <form method="POST" action="/adminUpdate">
+                <h2>Search Result</h2>
+                <table>
+                    {% for items in details %}
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                    </tr>
+                    <tr>
+                        <td>{{items[0]}}</td>
+                        <td>{{items[1]}}</td>
+                        <td>{{items[2]}}</td>
+                        <td>{{items[3]}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <div class="button-group">
+                    <button type="submit" name="deleteUser" class="icon-button" title="Delete User" onclick="return confirm('Are you sure you want to delete the user account?');"><i class="fas fa-trash-alt"></i></button>
+                    <button type="submit" name="editUserDetails" class="icon-button" title="Edit Details"><i class="fas fa-edit"></i></button>
+                </div>
+                <input type="hidden" name="button_identifier" value="admin_button">
+            </form>
+        </main>
+    </div>
+    
+    <footer>
+        <p>Admin Dashboard © 2024</p>
+    </footer>
+    <script>
+        function searchUser() {
+            const searchValue = document.getElementById('search-bar').value;
+        }
+
+    </script>
+
+</body>
+{% endblock %}
+</html>
