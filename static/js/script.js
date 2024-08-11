@@ -21,7 +21,7 @@ async function onStockSubmit() {
   chartsContainer.style.display = "none";
   loading.style.display = "block";
 
-  const server_url = `http://127.0.0.1:5000/stockDisplay`;
+  const server_url = `/stockDisplay`;
 
   const data = {
     stock_code: stockCode,

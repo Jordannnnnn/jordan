@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Searched Stock - Stock Market Dashboard</title>
+    <link rel="stylesheet" href="static/css/stockResult.css">
+</head>
+<body>
+    <header>
+        <h1>Stock Prediction and Analysis Display</h1>
+        <div id="user-info">
+            <a href="{{ url_for('userDashboard') }}">Back to Dashboard</a>
+        </div>
+    </header>
+    {% if hi %}
+                <h1>Stock Prediction Chart</h1>
+                <img id="stock_forecast_image" src="static/images/forecast_plot.png" alt="Stock orecast Chart">
+                <h1>Trend Analysis Chart</h1>
+                <img id="trend_analysis_image" src="static/images/trend_analysis_plot.png" alt="rend Analysis Chart">
+            </div>
+            <script src="static/js/script.js"></script>
+        </ul>
+    {% endif %}
+        {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}</p>
+        {% endif %}
+    </section>
+    </form>
+
+    <footer>
+        <p>Stock Market Dashboard © 2024</p>
+    </footer>
+
+</body>
+{% endblock %}
+</html>
