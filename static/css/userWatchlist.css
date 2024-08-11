@@ -1,113 +1,126 @@
-/* General Body Styles */
+/* General Body and Container Styles */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    padding: 20px 0; /* Padding at top and bottom for a more spacious feel */
+    background-size: cover;
+    color: #ddd; /* Light gray text */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Ensures center alignment of all children */
+    min-height: 100vh; /* Full viewport height */
 }
 
-/* Header Styling */
 header {
-    background-color: #3C3F41;
+    background-color: #284B63; /* Dark blue */
     color: #F8F9FA;
     padding: 10px 20px;
-    text-align: center;
-    font-size: 24px;
-    position: relative; /* Ensures positioning context for absolute elements within */
-}
-
-#user-info {
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    font-size: 18px;
+    width: 100%;
+    box-sizing: border-box;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-a,
-input[type="submit"] {
-    padding: 5px 10px;
-    margin: 2px;
-    font-size: 16px;
-    background-color: #6C757D;
+#user-info {
+    display: flex;
+    gap: 10px; /* Space between logout and back buttons */
+}
+
+#user-info a {
+    background-color: #406882; /* Medium blue */
     color: white;
-    border: none;
-    cursor: pointer;
+    padding: 10px 15px;
     border-radius: 5px;
     text-decoration: none;
-}
-
-button#logout-button {
-    padding: 5px 10px;
     font-size: 16px;
-    background-color: #6C757D;
-    color: white;
-    border: none;
     cursor: pointer;
-    border-radius: 5px;
-    margin-left: 20px; /* Space between user greeting and button */
 }
 
-button#logout-button:hover {
-    background-color: #5A6268;
+#user-info a:hover {
+    background-color: #30576e; /* Slightly darker blue on hover */
 }
 
-/* Search Section Styling */
-#search-section {
-    background-color: #F8F9FA;
+#watchlist {
+    width: 100%;
+    max-width: 800px; /* Ensures the watchlist does not stretch too wide */
     padding: 20px;
-    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* Soft shadow for depth */
+    margin-top: 20px; /* Space from the header */
 }
 
-#search-bar {
-    padding: 10px;
-    width: 40%;
-    margin-right: 10px;
-    font-size: 16px;
-}
-
-button {
-    background-color: #6C757D;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: #5A6268;
-}
-
-/* Watchlist and Stock Data Styling */
-section {
-    margin: 20px;
-    background-color: #FFFFFF;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
-}
-
-h2 {
-    color: #6C757D;
+#watchlist-items {
+    list-style: none; /* Removes bullet points */
+    padding: 0;
 }
 
 #watchlist-items li {
-    list-style: none;
     padding: 10px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #ddd; /* Light grey line between items */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-/* Footer Styling */
 footer {
-    background-color: #3C3F41;
+    width: 100%;
+    background-color: #284B63;
     color: white;
     text-align: center;
-    padding: 5px 0;
+    padding: 10px 0;
     position: fixed;
-    width: 100%;
     bottom: 0;
 }
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .auth-buttons, #user-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .auth-buttons button, #user-info a {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+#watchlist {
+    background-color: #fff; /* Light background for better contrast with black text */
+    color: #000; /* Black text for high contrast and readability */
+    padding: 20px; /* Padding for better spacing */
+    border-radius: 10px; /* Rounded corners for a smoother look */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.25); /* Subtle shadow for depth */
+    margin: 20px 0; /* Vertical spacing */
+}
+
+#watchlist h2, #watchlist h4, #watchlist li, #watchlist label {
+    color: #000; /* Ensuring all text in the watchlist is black */
+}
+
+#watchlist input[type="number"], #watchlist button {
+    background-color: #f7f7f7; /* Light gray background for input and buttons */
+    color: #000; /* Black text for inputs and buttons */
+    border: 1px solid #ccc; /* Subtle border for inputs */
+    padding: 8px 10px; /* Padding for inputs */
+    border-radius: 5px; /* Rounded borders for inputs and buttons */
+}
+
+#watchlist button {
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    background-color: #406882; /* Consistent button color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#watchlist button:hover {
+    background-color: #30576e; /* Slightly darker background on hover */
+}
+
+

@@ -2,7 +2,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 0 0 100px; /* added padding at the bottom */
     background: url('../images/background.jpg') no-repeat center center fixed;
     background-size: cover;
     color: #ddd; /* Light gray text */
@@ -83,6 +83,9 @@ button {
 
 button:hover {
     background-color: #30576e; /* Slightly darker blue */
+}
+.form-container, .content, .search-section {
+    margin-bottom: 20px; /* Adds space at the bottom of these elements */
 }
 
 footer {

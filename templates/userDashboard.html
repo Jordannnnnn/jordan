@@ -15,6 +15,7 @@
         <div class="menu">
             <button class="menu-button">Menu &#9662;</button>
             <div class="menu-content">
+                <a href="{{url_for('watchlistView')}}">My WatchList</a>
                 <a href="{{ url_for('viewProfile') }}">View Particular</a>
                 <a href="{{ url_for('updateProfile') }}">Update Particular</a>
                 <a href="{{ url_for('submitFeedback') }}">Submit Feedback</a>
@@ -39,8 +40,6 @@
             </button>
         </section>
     </form>
-
-    <a href="{{url_for('watchlistView')}}">My WatchList</a>
 
     <footer>
         <p>Stock Market Dashboard © 2024</p>

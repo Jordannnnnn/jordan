@@ -34,10 +34,18 @@ async function onStockSubmit() {
     headers: {
       "Content-Type": "application/json",
     },
-  }).then(() => {
+  })
+  .then(() => {
+    // Append a timestamp to avoid caching issues
+    const timestamp = new Date().getTime();
+    stockPredImage.src = `static/images/forecast_plot.png?${timestamp}`;
+    trendAnalysisImage.src = `static/images/trend_analysis_plot.png?${timestamp}`;
+
     loading.style.display = "none";
-    stockPredImage.src = "static/images/forecast_plot.png";
-    trendAnalysisImage.src = "static/images/trend_analysis_plot.png";
     chartsContainer.style.display = "block";
+  })
+  .catch((error) => {
+    console.log(error);
+    loading.style.display = "none";
   });
 }

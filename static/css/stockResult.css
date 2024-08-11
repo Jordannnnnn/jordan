@@ -115,9 +115,11 @@ footer {
 #stock_forecast_image {
     height: 375px;
     width: auto;
+    max-width: 100%;
 }
 
 #trend_analysis_image {
-    height: 500px;
-    width: auto;
+    width: 720px;
+    height: auto;
+    max-width: 100%;
 }

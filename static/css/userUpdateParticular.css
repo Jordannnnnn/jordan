@@ -1,21 +1,23 @@
 /* General Body Styles */
 body {
+
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f4; /* Light grey for a clean look */
-    color: #333;
+    margin: 0;
+    padding: 0 0 200px; /* added padding at the bottom */
+    background-size: cover;
+    color: black; /* Light gray text */
     display: flex;
     flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 20px;
+    align-items: center; /* Ensures center alignment of all children */
+    min-height: 100vh; /* Full viewport height */
 }
 
 header {
-    width: 100%;
-    background-color: #284B63;
+    background-color: #284B63; /* Dark blue */
     color: #F8F9FA;
     padding: 10px 20px;
+    width: 100%;
+    box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -56,7 +58,7 @@ input[type="text"], input[type="password"], textarea {
 }
 
 .button {
-    background-color: #4072B4; /* Blue to match the header */
+    background-color: #406882; /* Blue to match the header */
     color: white;
     padding: 12px 20px; /* Adjusted padding for better button size */
     border: none;
@@ -69,7 +71,7 @@ input[type="text"], input[type="password"], textarea {
 }
 
 .button:hover {
-    background-color: #30588C; /* Darker blue on hover */
+    background-color: #30576e; /* Darker blue on hover */
 }
 
 footer {

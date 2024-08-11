@@ -23,22 +23,18 @@
     <form method="POST" action="/watchlistAction">
     <section id="watchlist">
         <h2>My Watchlist</h2>
-        
         <ul id="watchlist-items">
-        
+        {% for items in userWatchlist %}
             <li>
-                {% for items in userWatchlist %}
                 <input type="hidden" name="button_identifier" value="watchlist_button">
                 <h4>{{items}}</h4>
                 <h4><button type="submit" name="removeStock" value={{items}}>Remove</button></h4>
                 <label for="numOfDays">Number of Days:</label>
-                <h4><input type="number" name="numOfDays" min=10 max=50000 placeholder="Optional"></h4>
+                <h4><input type="number" name="numOfDays" min=10 max=50000 placeholder="365"></h4>
                 <h4><button type="submit" name="displayStock" value={{items}}>Display Graph</button></h4>
-                {% endfor %}
             </li>
-        
+        {% endfor %}
         </ul>
-        
     </section>
     </form>
 
