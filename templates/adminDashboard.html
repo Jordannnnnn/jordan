@@ -16,7 +16,7 @@
             <button class="menu-button">Menu &#9662; </button>
             <div class="menu-content">
                 <a href="{{ url_for('viewFeedback') }}">View Feedback</a>
-                <a href="{{ url_for('logout') }}">Logout</a>
+                <a href="{{ url_for('logout') }}" onclick="return confirm('Are you sure you wish to log out?')">Logout</a>
             </div>
         </div>
     </header>
@@ -27,7 +27,7 @@
                 <section id="user-search">
                     <h2>Search User</h2>
                     <input type="text" id="search-bar" placeholder="Enter user name..." name="username">
-                    <button type="button" class="icon-button" onclick="searchUser()">
+                    <button class="icon-button" onclick="searchUser()">
                         <i class="fa fa-search"></i>
                         <span class="tooltip">Search Users</span>
                     </button>

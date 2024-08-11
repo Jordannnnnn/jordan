@@ -24,7 +24,7 @@
                 {% if success %}
                 <p class=success><strong></strong> {{ success }}
                 {% endif %}
-                <a href="{{ url_for('logout') }}">Logout</a>
+                <a href="{{ url_for('logout') }}" onclick="return confirm('Are you sure you wish to log out?')">Logout</a>
             </div>
         </div>
     </header>

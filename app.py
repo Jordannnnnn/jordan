@@ -732,6 +732,7 @@ def adminSearch():
         if len(result) < 1:
             error = "User does not exist. Please try again!"
         else:
+            print(result)
             displayUserDetails = (
                 """SELECT Username, Email, FirstName, LastName from Users WHERE Username='%s'"""
                 % (username)
@@ -756,10 +757,11 @@ def adminUpdate():
             if checkDeleteBtn is not None:
                 username = request.form["username"]
                 db = mysql.connector.connect(
-                    host="localhost",
-                    user="root",
-                    password="root",
-                    database="market_prophet",
+                    host = "db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
+                    user = "doadmin",
+                    password = "AVNS_ItKG7fksQ2ww_rQ7MLX",
+                    database = "market_prophet",
+                    port = 25060
                 )
                 cursor = db.cursor()
                 getUserID = """SELECT UserID from Users WHERE Username = '%s'""" % (
@@ -778,10 +780,11 @@ def adminUpdate():
                 userDetails = []
                 username = request.form["username"]
                 db = mysql.connector.connect(
-                    host="localhost",
-                    user="root",
-                    password="root",
-                    database="market_prophet",
+                    host = "db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
+                    user = "doadmin",
+                    password = "AVNS_ItKG7fksQ2ww_rQ7MLX",
+                    database = "market_prophet",
+                    port = 25060
                 )
                 cursor = db.cursor()
                 getUserDetails = (
@@ -803,10 +806,11 @@ def adminUpdate():
                 firstName = request.form["fname"]
                 lastName = request.form["lname"]
                 db = mysql.connector.connect(
-                    host="localhost",
-                    user="root",
-                    password="root",
-                    database="market_prophet",
+                    host = "db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
+                    user = "doadmin",
+                    password = "AVNS_ItKG7fksQ2ww_rQ7MLX",
+                    database = "market_prophet",
+                    port = 25060
                 )
                 if not (email):
                     cursor = db.cursor()
@@ -814,18 +818,21 @@ def adminUpdate():
                     values = (firstName, lastName, username)
                     cursor.execute(updateDetails, values)
                     db.commit()
+                    print("case 1")
                 elif not (firstName):
                     cursor = db.cursor()
                     updateDetails = """UPDATE Users set Email= %s, LastName = %s WHERE Username = %s"""
                     values = (email, lastName, username)
                     cursor.execute(updateDetails, values)
                     db.commit()
+                    print("case 2")
                 elif not (lastName):
                     cursor = db.cursor()
-                    updateDetails = """UPDATE users set Email= %s, FirstName = %s WHERE Username = %s"""
+                    updateDetails = """UPDATE Users set Email= %s, FirstName = %s WHERE Username = %s"""
                     values = (email, firstName, username)
                     cursor.execute(updateDetails, values)
                     db.commit()
+                    print("case 3")
                 elif not (email, firstName):
                     cursor = db.cursor()
                     updateDetails = (
@@ -834,6 +841,7 @@ def adminUpdate():
                     values = (lastName, username)
                     cursor.execute(updateDetails, values)
                     db.commit()
+                    print("case 4")
                 elif not (email, lastName):
                     cursor = db.cursor()
                     updateDetails = (
@@ -842,18 +850,21 @@ def adminUpdate():
                     values = (firstName, username)
                     cursor.execute(updateDetails, values)
                     db.commit()
+                    print("case 5")
                 elif not (firstName, lastName):
                     cursor = db.cursor()
                     updateDetails = """UPDATE Users set Email= %s WHERE Username = %s"""
                     values = (email, username)
                     cursor.execute(updateDetails, values)
                     db.commit()
+                    print("case 6")
                 else:
                     cursor = db.cursor()
                     updateDetails = """UPDATE Users set Email = %s, FirstName = %s, LastName = %s WHERE Username = %s"""
                     values = (email, firstName, lastName, username)
                     cursor.execute(updateDetails, values)
                     db.commit()
+                    print("case 7")
         return redirect(url_for("adminDashboard"))
     return render_template("adminDashboard.html", error=error)
 

@@ -13,7 +13,7 @@
     <header>
         <h1>Searched Result</h1>
         <div class="user-info">
-            <a href="{{url_for('adminDashboard')}}" class="back-button"></i> Back</a>
+            <a href="{{url_for('adminDashboard')}}" class="back-button"></i> Back to Dashboard</a>
         </div>
     </header>
 
@@ -35,6 +35,7 @@
                         <td>{{items[2]}}</td>
                         <td>{{items[3]}}</td>
                     </tr>
+                    <input type="hidden" name="username" value={{items[0]}}>
                     {% endfor %}
                 </table>
                 <div class="button-group">
