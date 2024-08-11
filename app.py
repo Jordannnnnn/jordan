@@ -261,12 +261,12 @@ def stockDisplay():
             try:
                 stock_data = yf.download(
                     stock_code,
-                    start="2022-01-01",
+                    start="2021-01-01",
                     end=datetime.now().strftime("%Y-%m-%d"),
                 )
                 print("Download completed!")
-                forecast_using_arima(stock_data, forecast_days, no_stats_log=True)
                 generate_candleStick_plot_for_recommandations(stock_data)
+                forecast_using_arima(stock_data, forecast_days, no_stats_log=True)
                 return jsonify({"message": "Chart Generated successfully!"})
             except Exception as e:
                 print(f"Error fetching data: {e}")
@@ -362,14 +362,63 @@ def forecast_using_arima(df, days_to_forecast, no_stats_log=False):
 
 
 def generate_candleStick_plot_for_recommandations(stock_data):
-    import time
+
+    short_window = 50
+    long_window = 200
+
+    rec_df = stock_data[200:].copy()
+
+    # Calculate SMAs
+    rec_df["SMA50"] = stock_data[50:]["Close"].rolling(window=short_window).mean()
+    rec_df["SMA200"] = stock_data["Close"].rolling(window=long_window).mean()
+
+    # Initialize signal columns
+    rec_df["Buy_Signal_Price"] = np.nan
+    rec_df["Sell_Signal_Price"] = np.nan
+
+    # Generate signals based on SMA crossovers
+    for i in range(1, len(rec_df)):
+        if (
+            rec_df["SMA50"].iloc[i] > rec_df["SMA200"].iloc[i]
+            and rec_df["SMA50"].iloc[i - 1] <= rec_df["SMA200"].iloc[i - 1]
+        ):
+            rec_df["Buy_Signal_Price"].iloc[i] = rec_df["Close"].iloc[i]
+        elif (
+            rec_df["SMA50"].iloc[i] < rec_df["SMA200"].iloc[i]
+            and rec_df["SMA50"].iloc[i - 1] >= rec_df["SMA200"].iloc[i - 1]
+        ):
+            rec_df["Sell_Signal_Price"].iloc[i] = rec_df["Close"].iloc[i]
+
+    # Plot with mplfinance
+    addplots = [
+        mpf.make_addplot(rec_df["SMA50"], color="blue", label="Short Term SMA (50)"),
+        mpf.make_addplot(rec_df["SMA200"], color="red", label="Long Term SMA (200)"),
+        mpf.make_addplot(
+            rec_df["Buy_Signal_Price"],
+            type="scatter",
+            markersize=100,
+            marker="^",
+            color="green",
+            label="Buy Signal",
+        ),
+        mpf.make_addplot(
+            rec_df["Sell_Signal_Price"],
+            type="scatter",
+            markersize=100,
+            marker="v",
+            color="red",
+            label="Sell Signal",
+        ),
+    ]
 
     mpf.plot(
-        stock_data.tail(100),
+        rec_df,
         type="candle",
         style="yahoo",
         ylabel="Price",
+        addplot=addplots,
         savefig="static/images/trend_analysis_plot.png",
+        title="SMA and Buy/Sell Signals",
     )
 
 
