@@ -92,9 +92,66 @@ def index():
 def about():
     return render_template("about.html")
 
-@app.route("/stock/AAPL")
+@app.route("/apple")
 def apple():
-    return render_template("register.html")
+    plot = None
+    ticker = "AAPL"
+    result = yf.download(tickers=ticker, start=Start, end=End)['Adj Close']
+    if len(result) > 0:
+            stock = yf.Ticker(ticker=ticker)
+            companyName = stock.info['longName']
+            fig = plt.figure()
+            plt.plot(result, linewidth=2)
+            plt.title(f'{companyName} ({ticker})')
+            plt.ylabel('Price ($)')
+            plt.xlabel('Date')
+            fig.autofmt_xdate()
+            plt.tight_layout()
+            plot=fig.savefig('static/images/guest_graph.png', dpi=fig.dpi, bbox_inches="tight")
+            return render_template("guestPopularStock.html", plot="Success")
+    else:
+        return render_template("index.html")
+
+@app.route("/google")
+def google():
+    plot = None
+    ticker = "GOOGL"
+    result = yf.download(tickers=ticker, start=Start, end=End)['Adj Close']
+    if len(result) > 0:
+            stock = yf.Ticker(ticker=ticker)
+            companyName = stock.info['longName']
+            fig = plt.figure()
+            plt.plot(result, linewidth=2, color='purple')
+            plt.title(f'{companyName} ({ticker})')
+            plt.ylabel('Price ($)')
+            plt.xlabel('Date')
+            fig.autofmt_xdate()
+            plt.tight_layout()
+            plot=fig.savefig('static/images/guest_graph.png', dpi=fig.dpi, bbox_inches="tight")
+            return render_template("guestPopularStock.html", plot="Success")
+    else:
+        return render_template("index.html")
+
+@app.route("/microsoft")
+def microsoft():
+    plot = None
+    ticker = "MSFT"
+    result = yf.download(tickers=ticker, start=Start, end=End)['Adj Close']
+    if len(result) > 0:
+            stock = yf.Ticker(ticker=ticker)
+            companyName = stock.info['longName']
+            fig = plt.figure()
+            plt.plot(result, linewidth=2, color='red')
+            plt.title(f'{companyName} ({ticker})')
+            plt.ylabel('Price ($)')
+            plt.xlabel('Date')
+            fig.autofmt_xdate()
+            plt.tight_layout()
+            plot=fig.savefig('static/images/guest_graph.png', dpi=fig.dpi, bbox_inches="tight")
+            return render_template("guestPopularStock.html", plot="Success")
+    else:
+        return render_template("index.html")
+
 
 @app.route("/register", methods=["POST", "GET"])
 def register():
