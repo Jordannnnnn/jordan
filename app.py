@@ -163,6 +163,7 @@ def register():
         lname = request.form["lname"]
         password = request.form["password"]
         email = request.form["email"]
+        accountType = request.form["accountType"]
 
         db = mysql.connector.connect(
             host = "db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
@@ -188,15 +189,72 @@ def register():
         elif len(result2) > 0:
             error = "Email already exists. Please try again!"
         else:
-            registerCredentials = "INSERT INTO Users (Username, Password, Email, FirstName, LastName) VALUES (%s, %s, %s, %s, %s)"
-            values = (username, password, email, fname, lname)
-            cursor.execute(registerCredentials, values)
-            db.commit()
-            success = "Welcome, " + str(username)
-            session["username"] = str(username)
-            # return render_template('userDashboard.html', success=success)
-            return redirect(url_for("userDashboard", success=success))
+            if accountType == 'trial':
+                trialAcc = 1
+                startDate = date.today()
+                startDate.strftime("%Y-%m-%d")
+                trialPeriod = 7
+                registerCredentials = "INSERT INTO Users (Username, Password, Email, FirstName, LastName, TrialAcc, startDate, trialPeriod) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+                values = (username, password, email, fname, lname, trialAcc, startDate, trialPeriod)
+                cursor.execute(registerCredentials, values)
+                db.commit()
+                cursor3 = db.cursor(buffered=True)
+                displayTimer = """
+                                SELECT CONCAT(trialPeriod - DATEDIFF(CURDATE(), startDate), ' days ', 
+                                TIME_FORMAT(SEC_TO_TIME((UNIX_TIMESTAMP(DATE_ADD(startDate, INTERVAL trialPeriod DAY)) - 
+                                UNIX_TIMESTAMP(NOW())) % 86400), '%H:%i:%S')) AS RemainingTrialPeriod 
+                                FROM Users WHERE Username = %s
+                                """
+                values = (username,)
+                cursor3.execute(displayTimer, values)
+                result = str(cursor3.fetchall()) 
+                specialChars = ["[", "(", "'", ",", ")", "]"]
+                result_withoutSpecialChar = ''.join(i for i in result if not i in specialChars)
+                session["timer"] = str(result_withoutSpecialChar)
+                success = "Welcome, " + str(username)
+                session["username"] = str(username)
+                return render_template("userDashboard.html", success=success, timer=result_withoutSpecialChar)
+            else:
+                session["username"] = str(username)
+                session["email"] = str(email)
+                session["fname"] = str(fname)
+                session["lname"] = str(lname)
+                session["password"] = str(password)
+                session["timer"] = None
+                return render_template("payment.html")
     return render_template("register.html", error=error)
+
+@app.route("/payment", methods=["POST","GET"])
+def payment():
+    success = None
+    message = 'Your trial ending in: '
+    if request.method == "POST":
+        username = session["username"]
+        password = session["password"]
+        email = session["email"]
+        fname = session["fname"]
+        lname = session["lname"]
+        session["timer"] = None
+
+        db = mysql.connector.connect(
+            host = "db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
+            user = "doadmin",
+            password = "AVNS_ItKG7fksQ2ww_rQ7MLX",
+            database = "market_prophet",
+            port = 25060
+        )
+
+        cursor = db.cursor(buffered=True)
+        trialAcc = 0
+        startDate = date.today()
+        startDate.strftime("%Y-%m-%d")
+        trialPeriod = 0
+        registerCredentials = "INSERT INTO Users (Username, Password, Email, FirstName, LastName, TrialAcc, startDate, trialPeriod) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+        values = (username, password, email, fname, lname, trialAcc, startDate, trialPeriod)
+        cursor.execute(registerCredentials, values)
+        db.commit()
+        return redirect(url_for('userDashboard', success=success))
+    return render_template("register.html")
 
 
 @app.route("/login", methods=["POST", "GET"])
@@ -234,26 +292,65 @@ def login():
             roleType = cursor.fetchall()
             for x in roleType:
                 if str(x[0]) == "User":
-                    cursor2 = db.cursor(buffered=True)
-                    getUserID = """SELECT UserID from Users WHERE Username = '%s'""" % (
-                        username
-                    )
-                    cursor2.execute(getUserID)
-                    userID = cursor2.fetchall()
-                    success = "Welcome, " + str(username)
-                    session["username"] = str(username)
-                    for y in userID:
-                        cursor3 = db.cursor(buffered=True)
-                        getWatchlist = (
-                            """SELECT StockTicker from Watchlist WHERE UserID = '%s'"""
-                            % (str(y[0]).replace("()", ""))
-                        )
-                        cursor3.execute(getWatchlist)
-                        watchlist = cursor3.fetchall()
-                        for z in watchlist:
-                            userWatchlist.append(str(z[0]))
-                    return redirect(url_for("userDashboard"))
-
+                    checkTrialAcc = """SELECT TrialAcc FROM Users WHERE Username = '%s'""" %(username)
+                    cursor3 = db.cursor(buffered=True)
+                    cursor3.execute(checkTrialAcc)
+                    trialAcc = cursor3.fetchall()
+                    for z in trialAcc:
+                        if (z[0]) == 0:
+                            cursor2 = db.cursor(buffered=True)
+                            getUserID = """SELECT UserID from Users WHERE Username = '%s'""" % (
+                                username
+                            )
+                            cursor2.execute(getUserID)
+                            userID = cursor2.fetchall()
+                            success = "Welcome, " + str(username)
+                            session["username"] = str(username)
+                            for y in userID:
+                                cursor3 = db.cursor(buffered=True)
+                                getWatchlist = (
+                                    """SELECT StockTicker from Watchlist WHERE UserID = '%s'"""
+                                    % (str(y[0]).replace("()", ""))
+                                )
+                                cursor3.execute(getWatchlist)
+                                watchlist = cursor3.fetchall()
+                                for z in watchlist:
+                                    userWatchlist.append(str(z[0]))
+                            return redirect(url_for("userDashboard"))
+                        elif (z[0] == 1):
+                            cursor2 = db.cursor(buffered=True)
+                            getUserID = """SELECT UserID from Users WHERE Username = '%s'""" % (
+                                username
+                            )
+                            cursor2.execute(getUserID)
+                            userID = cursor2.fetchall()
+                            cursor4 = db.cursor(buffered=True)
+                            displayTimer = """
+                                            SELECT CONCAT(trialPeriod - DATEDIFF(CURDATE(), startDate), ' days ', 
+                                            TIME_FORMAT(SEC_TO_TIME((UNIX_TIMESTAMP(DATE_ADD(startDate, INTERVAL trialPeriod DAY)) - 
+                                            UNIX_TIMESTAMP(NOW())) % 86400), '%H:%i:%S')) AS RemainingTrialPeriod 
+                                            FROM Users WHERE Username = %s
+                                            """
+                            values = (username,)
+                            cursor4.execute(displayTimer, values)
+                            result = str(cursor4.fetchall()) 
+                            specialChars = ["[", "(", "'", ",", ")", "]"]
+                            result_withoutSpecialChar = ''.join(i for i in result if not i in specialChars)
+                            session["timer"] = str(result_withoutSpecialChar)
+                            success = "Welcome, " + str(username)
+                            session["username"] = str(username)
+                            for y in userID:
+                                cursor3 = db.cursor(buffered=True)
+                                getWatchlist = (
+                                    """SELECT StockTicker from Watchlist WHERE UserID = '%s'"""
+                                    % (str(y[0]).replace("()", ""))
+                                )
+                                cursor3.execute(getWatchlist)
+                                watchlist = cursor3.fetchall()  
+                                for z in watchlist:
+                                    userWatchlist.append(str(z[0]))
+                            return render_template("userDashboard.html", timer=result_withoutSpecialChar)
+                    
                 else:
                     success = "Welcome, " + str(username)
                     session["username"] = str(username)
@@ -269,23 +366,41 @@ def userDashboard():
 
     if "username" in session:
         username = session["username"]
+        if "timer" in session:
+            timer = session["timer"]
+            if request.method == "POST":
+                if request.form["button_identifier"] == "search_button":
+                    ticker = request.form["stockTicker"]
+                    session["ticker"] = ticker
+                    result = yf.download(tickers=ticker, start=Start, end=End)
 
-        if request.method == "POST":
-            if request.form["button_identifier"] == "search_button":
-                ticker = request.form["stockTicker"]
-                session["ticker"] = ticker
-                result = yf.download(tickers=ticker, start=Start, end=End)
+                    if len(result) > 0:
+                        fullStockName = (
+                            yf.Ticker(str(ticker)).info["shortName"] + f" ({ticker})"
+                        )
+                        return redirect(url_for("stockResult"))
+                    else:
+                        error = "No such stock ticker exists. Please try again! (Example: AAPL, GOOG)"
+                        return render_template("userDashboard.html", error=error, timer=timer)
 
-                if len(result) > 0:
-                    fullStockName = (
-                        yf.Ticker(str(ticker)).info["shortName"] + f" ({ticker})"
-                    )
-                    return redirect(url_for("stockResult"))
-                else:
-                    error = "No such stock ticker exists. Please try again! (Example: AAPL, GOOG)"
-                    return render_template("userDashboard.html", error=error)
+            return render_template("userDashboard.html", userWatchlist=userWatchlist, timer=timer)
+        else:
+            if request.method == "POST":
+                if request.form["button_identifier"] == "search_button":
+                    ticker = request.form["stockTicker"]
+                    session["ticker"] = ticker
+                    result = yf.download(tickers=ticker, start=Start, end=End)
 
-        return render_template("userDashboard.html", userWatchlist=userWatchlist)
+                    if len(result) > 0:
+                        fullStockName = (
+                            yf.Ticker(str(ticker)).info["shortName"] + f" ({ticker})"
+                        )
+                        return redirect(url_for("stockResult"))
+                    else:
+                        error = "No such stock ticker exists. Please try again! (Example: AAPL, GOOG)"
+                        return render_template("userDashboard.html", error=error)
+
+            return render_template("userDashboard.html", userWatchlist=userWatchlist)
     else:
         error = "You are not logged in. Please log in first!"
         return render_template("login.html", error=error)
@@ -562,7 +677,7 @@ def watchlistAdd():
                     watchlist = cursor4.fetchall()
                     for z in watchlist:
                         userWatchlist.append(str(z[0]))
-                    return redirect(url_for("userDashboard"))
+                    return redirect(url_for("watchlistView"))
                 else:
                     error = "You already have this stock in your watchlist!"
                     return render_template("stockResult.html", error=error)
@@ -977,7 +1092,7 @@ def adminUpdate():
 
 @app.route("/logout")
 def logout():
-    session.pop("username")
+    session.clear()
     return redirect(url_for("index"))
 
 

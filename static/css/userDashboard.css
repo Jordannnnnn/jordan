@@ -168,3 +168,8 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+.timer {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}

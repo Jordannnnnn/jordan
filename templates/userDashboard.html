@@ -38,12 +38,70 @@
                 <i class="fa fa-search"></i>
                 <span class="tooltip">Search</span>
             </button>
+            <br><br>
+            {% if error %}
+            {{ error }}
+            {% endif %}
         </section>
     </form>
+    {% if timer %}
+    <div id="timerLabel" class="timerLabel"><h3>Trial remaining: </h3></div>
+    <div id="timer" class="timer" data-time="{{ timer }}"></div>
 
     <footer>
         <p>Stock Market Dashboard © 2024</p>
     </footer>
+
+    <script>
+        function updateTimer(elementId, remainingTime) {
+            const timerElement = document.getElementById(elementId);
+            let days = parseInt(remainingTime.split(' days ')[0]);
+            const parts = remainingTime.split(' days ')[1].split(':');
+            let hours = parseInt(parts[0]);
+            let minutes = parseInt(parts[1]);
+            let seconds = parseInt(parts[2]);
+
+            function tick() {
+                if (seconds > 0) {
+                    seconds--;
+                } else if (minutes > 0) {
+                    seconds = 59;
+                    minutes--;
+                } else if (hours > 0) {
+                    seconds = 59;
+                    minutes = 59;
+                    hours--;
+                } else if (days > 0) {
+                    seconds = 59;
+                    minutes = 59;
+                    hours = 23;
+                    days--;
+                } else {
+                    // Keep the time at 0 once the countdown finishes
+                    seconds = 0;
+                    minutes = 0;
+                    hours = 0;
+                    days = 0;
+                }
+
+                // Format the remaining time in the desired format
+                let formattedTime = days + ' days, ' +
+                                    hours + ' hrs ' +
+                                    minutes + ' mins ' +
+                                    seconds + ' secs';
+
+                timerElement.textContent = formattedTime;
+            }
+
+            setInterval(tick, 1000);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            updateTimer('timer', '{{ timer }}');
+        });
+    </script>
+    {% endif %}
+
 </body>
 {% endblock %}
 </html>

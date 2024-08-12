@@ -46,6 +46,13 @@
                 <span class="error-message" id="confirmPasswordError"></span>
             </div>
             <div class="input-group">
+                <label for="accountType">Account Type:</label>
+                <select name="accountType" id="accountType">
+                    <option value="paid">Paid</option>
+                    <option value="trial">Trial</option>
+                </select>
+            </div>
+            <div class="input-group">
                 <button type="submit">Register</button>
                 {% if error %}
                 <p class=error><strong>Error:</strong> {{ error }}

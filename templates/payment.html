@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% extends "layout.html" %}
+{% block body %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <link rel="stylesheet" href="static/css/payment.css">  <!-- Ensure this path correctly points to your CSS file -->
+</head>
+<body>
+    <header>
+        <h1>MarketProphet</h1>
+        <a href="/" class="back-button">Back</a>  <!-- Ensure correct linking to your homepage or previous page -->
+    </header>
+
+    <div class="form-container">
+        <h2>Payment (Paid User)</h2>
+        <form id="paymentForm" action="/payment" method="post" class="form-style">
+            <div class="input-group">
+                <label for="cardType">Card Type:</label>
+                <select name="accountType" id="accountType">
+                    <option value="visa">Visa</option>
+                    <option value="master">Mastercard</option>
+                    <option value="amex">American Express</option>
+                    <option value="unionPay">Union Pay</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="cardNo">Card Number:</label>
+                <input type="text" id="cardNo" name="cardNo" placeholder="Credit Card Number (16 digits)" required pattern="\d{16}" title="Card number must be exactly 16 digits long.">
+                <span class="error-message" id="cardNoError"></span>
+            </div>
+            <div class="input-group">
+                <label for="cardCvc">CVC:</label>
+                <input type="text" id="cardCvc" name="cardCvc" placeholder="CVC (3 digits)" required pattern="\d{3}" title="Card Cvc must be exactly 3 digits long.">
+                <span class="error-message" id="cardCvcError"></span>
+            </div>
+            <div class="input-group">
+                <label for="cardExpiry">Expiry:</label>
+                <input type="month" id="cardExpiry" name="cardExpiry" required>
+            </div>
+            <div class="input-group">
+                <button type="submit">Make Payment</button>
+                {% if error %}
+                <p class=error><strong>Error:</strong> {{ error }}
+                {% endif %}
+            </div>
+            <div>
+                <p>Already have an account? <a href="/login">Login</a></p>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <p>Stock Market Service © 2024</p>
+    </footer>
+</body>
+{% endblock %}
+</html>
