@@ -371,36 +371,42 @@ def userDashboard():
             if request.method == "POST":
                 if request.form["button_identifier"] == "search_button":
                     ticker = request.form["stockTicker"]
-                    session["ticker"] = ticker
-                    result = yf.download(tickers=ticker, start=Start, end=End)
 
-                    if len(result) > 0:
-                        fullStockName = (
-                            yf.Ticker(str(ticker)).info["shortName"] + f" ({ticker})"
-                        )
-                        return redirect(url_for("stockResult"))
+                    if ticker != "":
+                        session["ticker"] = ticker
+                        result = yf.download(tickers=ticker, start=Start, end=End)
+                        if len(result) > 0:
+                            fullStockName = (
+                                yf.Ticker(str(ticker)).info["shortName"] + f" ({ticker})"
+                            )
+                            return redirect(url_for("stockResult"))
+                        else:
+                            error = "No such stock ticker exists. Please try again! (Example: AAPL, GOOG)"
+                            return render_template("userDashboard.html", error=error, timer=timer)
                     else:
-                        error = "No such stock ticker exists. Please try again! (Example: AAPL, GOOG)"
-                        return render_template("userDashboard.html", error=error, timer=timer)
+                        error = "Please enter a stock ticker!"
 
             return render_template("userDashboard.html", userWatchlist=userWatchlist, timer=timer)
         else:
             if request.method == "POST":
                 if request.form["button_identifier"] == "search_button":
                     ticker = request.form["stockTicker"]
-                    session["ticker"] = ticker
-                    result = yf.download(tickers=ticker, start=Start, end=End)
-
-                    if len(result) > 0:
-                        fullStockName = (
-                            yf.Ticker(str(ticker)).info["shortName"] + f" ({ticker})"
-                        )
-                        return redirect(url_for("stockResult"))
+                    
+                    if ticker != "":
+                        session["ticker"] = ticker
+                        result = yf.download(tickers=ticker, start=Start, end=End)
+                        if len(result) > 0:
+                            fullStockName = (
+                                yf.Ticker(str(ticker)).info["shortName"] + f" ({ticker})"
+                            )
+                            return redirect(url_for("stockResult"))
+                        else:
+                            error = "No such stock ticker exists. Please try again! (Example: AAPL, GOOG)"
+                            return render_template("userDashboard.html", error=error)
                     else:
-                        error = "No such stock ticker exists. Please try again! (Example: AAPL, GOOG)"
-                        return render_template("userDashboard.html", error=error)
+                        error = "Please enter a stock ticker!"
 
-            return render_template("userDashboard.html", userWatchlist=userWatchlist)
+            return render_template("userDashboard.html", userWatchlist=userWatchlist, error=error)
     else:
         error = "You are not logged in. Please log in first!"
         return render_template("login.html", error=error)
@@ -719,7 +725,7 @@ def watchlistRemove():
                     )
                     cursor2.execute(deleteStock)
                     db.commit()
-                return redirect(url_for("userDashboard"))
+                return redirect(url_for("watchlistView"))
 
             elif checkDisplayBtn is not None:
                 ticker = request.form["displayStock"]
@@ -874,7 +880,9 @@ def submitFeedback():
             values = (title, content)
             cursor.execute(insertUserFeedBack, values)
             db.commit()
-            return redirect(url_for('userDashboard'))
+            #return redirect(url_for('userDashboard'))
+            success = "Feedback successfully submitted!"
+            return render_template("userSubmitFeedback.html", success=success)
 
     else:
         return render_template('userSubmitFeedback.html')
@@ -900,6 +908,7 @@ def viewFeedback():
 
 @app.route('/deleteFeedback', methods=["POST","GET"])
 def deleteFeedback():
+    feedback = []
     if request.method == "POST":
         feedbackID = request.form.get("deleteFeedback")
 
@@ -915,7 +924,15 @@ def deleteFeedback():
         deleteFeedback = "DELETE FROM Feedback WHERE FeedbackID = %s" %(feedbackID)
         cursor.execute(deleteFeedback)
         db.commit()
-        return render_template('adminDashboard.html')
+
+        cursor2 = db.cursor()
+        getFeedback = "SELECT FeedbackID, Title, Content FROM Feedback"
+        cursor2.execute(getFeedback)
+        result = cursor2.fetchall()
+        for x in result:
+            feedback.append(x)
+
+        return render_template('adminViewFeedback.html', feedback=feedback)
 
 
 @app.route("/adminDashboard")
@@ -1033,6 +1050,16 @@ def adminUpdate():
                     database = "market_prophet",
                     port = 25060
                 )
+                userDetails = []
+                cursor = db.cursor()
+                getUserDetails = (
+                    """SELECT Username, Email, FirstName, LastName FROM Users WHERE Username='%s'"""
+                    % (username)
+                )
+                cursor.execute(getUserDetails)
+                result = cursor.fetchall()
+                for row in result:
+                    userDetails.append(row)
                 if not (email):
                     cursor = db.cursor()
                     updateDetails = """UPDATE Users set FirstName = %s, LastName = %s WHERE Username = %s"""
@@ -1086,8 +1113,8 @@ def adminUpdate():
                     cursor.execute(updateDetails, values)
                     db.commit()
                     print("case 7")
-        return redirect(url_for("adminDashboard"))
-    return render_template("adminDashboard.html", error=error)
+        return render_template("adminUpdateUserParticular.html", success="User profile successfully updated!", userDetails=userDetails)
+    return render_template("adminUpdateUserParticular.html", error=error)
 
 
 @app.route("/logout")

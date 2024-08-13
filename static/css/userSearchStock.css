@@ -9,7 +9,7 @@ body {
 }
 
 header {
-    background-color: #3C3F41;
+    background-color: #284B63;
     color: #F8F9FA;
     padding: 10px 20px;
     display: flex;
@@ -47,7 +47,7 @@ img {
 }
 
 footer {
-    background-color: #3C3F41;
+    background-color: #284B63;
     color: white;
     text-align: center;
     padding: 10px 0;

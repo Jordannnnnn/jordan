@@ -32,7 +32,7 @@
                 <input type="text" id="stock_code" placeholder="{{ stockTicker }}" readonly>
                 <label for="forecast_days">Days to Forecast:</label>
                 <input type="text" id="forecast_days" name="forecast_days" placeholder="30" required>
-                <button type="submit" name="searchedStock" value="{{ success }}" id="stock-submit">Display Graph</button>
+                <button type="submit" class="displayGraphBtn" name="searchedStock" value="{{ success }}" id="stock-submit">Display Graph</button>
             </div>
             {% endif %}
             <div id="loading" style="display: none;">Loading...</div>

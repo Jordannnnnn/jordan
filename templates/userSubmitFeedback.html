@@ -12,9 +12,7 @@
     <header>
         <h1>Feedback Form</h1>
         <div id="user-info">
-            {% if success %}
-            <p class="success"><strong>Success:</strong> {{ success }}</p>
-            {% endif %}
+            
         </div>
     </header>
 
@@ -32,7 +30,11 @@
             <input type="hidden" name="button_identifier" value="feedback_button">
             <button type="submit" class="button">Submit</button>
             <a href="{{ url_for('userDashboard') }}" class="button">Back</a>
+            {% if success %}
+            <p class="success"><strong> {{ success }}</strong></p>
+            {% endif %}
         </form>
+        
     </section>
 
     <footer>
