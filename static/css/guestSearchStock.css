@@ -9,7 +9,7 @@ body {
 }
 
 header {
-    background-color: #3C3F41;
+    background-color: #284B63;
     color: #F8F9FA;
     padding: 10px 20px;
     display: flex;
@@ -23,7 +23,7 @@ header {
 }
 
 .auth-buttons button {
-    background-color: #6C757D;
+    background-color:  #406882;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -33,7 +33,7 @@ header {
 }
 
 .auth-buttons button:hover {
-    background-color: #5A6268;
+    background-color:  #30576e;
 }
 
 .main-container {
@@ -47,7 +47,7 @@ img {
 }
 
 footer {
-    background-color: #3C3F41;
+    background-color: #284B63;
     color: white;
     text-align: center;
     padding: 10px 0;

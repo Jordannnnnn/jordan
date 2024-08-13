@@ -2,7 +2,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    padding: 20px 0; /* Padding at top and bottom for a more spacious feel */
+    padding-bottom: 0; /* Padding at top and bottom for a more spacious feel */
     background-size: cover;
     color: #ddd; /* Light gray text */
     display: flex;

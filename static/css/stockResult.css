@@ -3,16 +3,16 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f4f4; /* Light grey for a clean look */
     color: #333; /* Darker text for better readability */
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    padding: 20px;
+    padding: 0;
 }
 
 header {
-    width: 100%;
+    width: auto;
     background-color: #284B63; /* Dark blue */
     color: #F8F9FA;
     padding: 10px 20px;
