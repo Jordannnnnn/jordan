@@ -18,9 +18,19 @@
     </header>
 
     <div class="main-container">  
-            {% if plot %}
+            {% if plotApple %}
             <div class="graph-container">
-            <img src="static/images/guest_graph.png" alt="graph image" />
+            <img src="static/images/apple_graph.png" alt="graph image" />
+            </div>
+            {% endif %}
+            {% if plotGoogle %}
+            <div class="graph-container">
+            <img src="static/images/google_graph.png" alt="graph image" />
+            </div>
+            {% endif %}
+            {% if plotMicrosoft %}
+            <div class="graph-container">
+            <img src="static/images/microsoft_graph.png" alt="graph image" />
             </div>
             {% endif %}
             <div class="buttons-container">

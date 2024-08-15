@@ -107,8 +107,8 @@ def apple():
             plt.xlabel('Date')
             fig.autofmt_xdate()
             plt.tight_layout()
-            plot=fig.savefig('static/images/guest_graph.png', dpi=fig.dpi, bbox_inches="tight")
-            return render_template("guestPopularStock.html", plot="Success")
+            plot=fig.savefig('static/images/apple_graph.png', dpi=fig.dpi, bbox_inches="tight")
+            return render_template("guestPopularStock.html", plotApple="Success")
     else:
         return render_template("index.html")
 
@@ -127,8 +127,8 @@ def google():
             plt.xlabel('Date')
             fig.autofmt_xdate()
             plt.tight_layout()
-            plot=fig.savefig('static/images/guest_graph.png', dpi=fig.dpi, bbox_inches="tight")
-            return render_template("guestPopularStock.html", plot="Success")
+            plot=fig.savefig('static/images/google_graph.png', dpi=fig.dpi, bbox_inches="tight")
+            return render_template("guestPopularStock.html", plotGoogle="Success")
     else:
         return render_template("index.html")
 
@@ -147,8 +147,8 @@ def microsoft():
             plt.xlabel('Date')
             fig.autofmt_xdate()
             plt.tight_layout()
-            plot=fig.savefig('static/images/guest_graph.png', dpi=fig.dpi, bbox_inches="tight")
-            return render_template("guestPopularStock.html", plot="Success")
+            plot=fig.savefig('static/images/microsoft_graph.png', dpi=fig.dpi, bbox_inches="tight")
+            return render_template("guestPopularStock.html", plotMicrosoft="Success")
     else:
         return render_template("index.html")
 
