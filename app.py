@@ -517,6 +517,8 @@ def plot_forecast(fitted_model, train_data, steps):
     plt.title("Projection of Stock Prices")
     plt.legend(loc="upper left", fontsize=8)
     plt.savefig("static/images/forecast_plot.png")
+    plt.clf()
+    plt.close()
 
 
 def forecast_using_arima(df, days_to_forecast, no_stats_log=False):
@@ -1013,6 +1015,7 @@ def adminUpdate():
                     cursor.execute(deleteUser)
                     db.commit()
                 flash("User successfully deleted!")
+                return render_template("adminDashboard.html", success="User successfully deleted")
 
             elif checkEditBtn is not None:
                 userDetails = []
