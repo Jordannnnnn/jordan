@@ -18,17 +18,17 @@
 
     <section id="feedback-form">
         <h2>Submit Your Feedback</h2>
-        <form method="POST" action="/submitFeedback">
+        <form method="POST" action="/submitFeedback" id="feedbackForm">
             <div class="form-group">
                 <label for="title">Title:</label>
-                <input type="text" id="title" name="feedbackTitle" value="{{ request.form['feedbackTitle'] or '' }}" required>
+                <input type="text" id="title" name="feedbackTitle" placeholder="Message Title" autocomplete="off" required>
             </div>
             <div class="form-group">
                 <label for="feedbackContent">Message:</label>
-                <textarea id="feedbackContent" name="feedbackContent" placeholder="Message Content" rows="6" cols="50" required></textarea>
+                <textarea id="feedbackContent" name="feedbackContent" placeholder="Message Content" autocomplete="off" rows="6" cols="50" required></textarea>
             </div>
             <input type="hidden" name="button_identifier" value="feedback_button">
-            <button type="submit" class="button">Submit</button>
+            <button type="submit" class="button" onclick="clearTitleField()">Submit</button>
             <a href="{{ url_for('userDashboard') }}" class="button">Back</a>
             {% if success %}
             <p class="success"><strong> {{ success }}</strong></p>
@@ -44,7 +44,6 @@
     <script type="text/javascript">
     </script>
 
-    </script>
 </body>
 {% endblock %}
 </html>

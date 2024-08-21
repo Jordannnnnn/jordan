@@ -28,17 +28,17 @@
             </div>
             <div class="input-group">
                 <label for="cardNo">Card Number:</label>
-                <input type="text" id="cardNo" name="cardNo" placeholder="Credit Card Number (16 digits)" required pattern="\d{16}" title="Card number must be exactly 16 digits long.">
+                <input type="text" id="cardNo" name="cardNo" placeholder="Credit Card Number (16 digits)" autocomplete="off" required pattern="\d{16}" title="Card number must be exactly 16 digits long.">
                 <span class="error-message" id="cardNoError"></span>
             </div>
             <div class="input-group">
                 <label for="cardCvc">CVC:</label>
-                <input type="text" id="cardCvc" name="cardCvc" placeholder="CVC (3 digits)" required pattern="\d{3}" title="Card Cvc must be exactly 3 digits long.">
+                <input type="text" id="cardCvc" name="cardCvc" placeholder="CVC (3 digits)" autocomplete="off" required pattern="\d{3}" title="Card Cvc must be exactly 3 digits long.">
                 <span class="error-message" id="cardCvcError"></span>
             </div>
             <div class="input-group">
                 <label for="cardExpiry">Expiry:</label>
-                <input type="month" id="cardExpiry" name="cardExpiry" required>
+                <input type="month" id="cardExpiry" name="cardExpiry" autocomplete="off" required>
             </div>
             <div class="input-group">
                 <label for="paymentAmt">Amount: $15/Month</label>
