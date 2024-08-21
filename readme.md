@@ -12,11 +12,12 @@ To run this project;
 (EXECUTING PYTHON FILE)
 - Create a virtual environment in your IDE (Python v3.11 preferably)
 - Run these 2 commands in Terminal/Powershell:
-; pip install -r requirements.txt
-; py/python app.py
+- pip install -r requirements.txt
+- py/python app.py
 
-- Search a stock ticker as a guest, or register for an account and you can do even more like generating a prediction graph for your searched stock!
 
-IMPORTANT: You must have a MYSQL database configured locally, MYSQL Workbench/PHPMyAdmin etc. 
+ Finally, search a stock ticker as a guest, or register for an account and you can do even more like generating a prediction graph for your searched stock!
+
+**IMPORTANT: You must have a MYSQL database configured locally, MYSQL Workbench/PHPMyAdmin etc.**
 
 
