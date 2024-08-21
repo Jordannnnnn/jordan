@@ -166,11 +166,10 @@ def register():
         accountType = request.form["accountType"]
 
         db = mysql.connector.connect(
-            host = "db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
-            user = "doadmin",
-            password = "AVNS_ItKG7fksQ2ww_rQ7MLX",
-            database = "market_prophet",
-            port = 25060
+            host = "localhost",
+            user = "root",
+            password = "",
+            database = "market_prophet"
         )
 
         cursor = db.cursor(buffered=True)
@@ -237,11 +236,10 @@ def payment():
         session["timer"] = None
 
         db = mysql.connector.connect(
-            host = "db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
-            user = "doadmin",
-            password = "AVNS_ItKG7fksQ2ww_rQ7MLX",
-            database = "market_prophet",
-            port = 25060
+            host = "localhost",
+            user = "root",
+            password = "",
+            database = "market_prophet"
         )
 
         cursor = db.cursor(buffered=True)
@@ -267,11 +265,10 @@ def login():
         password = request.form["password"]
 
         db = mysql.connector.connect(
-            host = "db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
-            user = "doadmin",
-            password = "AVNS_ItKG7fksQ2ww_rQ7MLX",
-            database = "market_prophet",
-            port = 25060
+            host = "localhost",
+            user = "root",
+            password = "",
+            database = "market_prophet"
         )
 
         cursor = db.cursor(buffered=True)
@@ -610,11 +607,10 @@ def watchlistView():
         username = session["username"]
 
         db = mysql.connector.connect(
-            host = "db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
-            user = "doadmin",
-            password = "AVNS_ItKG7fksQ2ww_rQ7MLX",
-            database = "market_prophet",
-            port = 25060
+            host = "localhost",
+            user = "root",
+            password = "",
+            database = "market_prophet"
         )
 
         cursor = db.cursor(buffered=True)
@@ -644,11 +640,10 @@ def watchlistAdd():
         username = session["username"]
 
         db = mysql.connector.connect(
-            host = "db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
-            user = "doadmin",
-            password = "AVNS_ItKG7fksQ2ww_rQ7MLX",
-            database = "market_prophet",
-            port = 25060
+            host = "localhost",
+            user = "root",
+            password = "",
+            database = "market_prophet"
         )
 
         cursor = db.cursor(buffered=True)
@@ -706,11 +701,10 @@ def watchlistRemove():
                 stockToDelete = request.form["removeStock"]
 
                 db = mysql.connector.connect(
-                    host = "db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
-                    user = "doadmin",
-                    password = "AVNS_ItKG7fksQ2ww_rQ7MLX",
-                    database = "market_prophet",
-                    port = 25060
+                    host = "localhost",
+                    user = "root",
+                    password = "",
+                    database = "market_prophet"
                 )
 
                 cursor = db.cursor(buffered=True)
@@ -774,11 +768,10 @@ def viewProfile():
         username = session["username"]
 
         db = mysql.connector.connect(
-            host = "db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
-            user = "doadmin",
-            password = "AVNS_ItKG7fksQ2ww_rQ7MLX",
-            database = "market_prophet",
-            port = 25060
+            host = "localhost",
+            user = "root",
+            password = "",
+            database = "market_prophet"
         )
 
         cursor = db.cursor()
@@ -805,11 +798,10 @@ def updateProfile():
         lname = request.form["lname"]
 
         db = mysql.connector.connect(
-            host = "db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
-            user = "doadmin",
-            password = "AVNS_ItKG7fksQ2ww_rQ7MLX",
-            database = "market_prophet",
-            port = 25060
+            host = "localhost",
+            user = "root",
+            password = "",
+            database = "market_prophet"
         )
 
         cursor = db.cursor(buffered=True)
@@ -840,11 +832,10 @@ def deleteProfile():
             username = session["username"]
 
             db = mysql.connector.connect(
-            host = "db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
-            user = "doadmin",
-            password = "AVNS_ItKG7fksQ2ww_rQ7MLX",
-            database = "market_prophet",
-            port = 25060
+            host = "localhost",
+            user = "root",
+            password = "",
+            database = "market_prophet"
         )
 
             cursor = db.cursor()
@@ -871,11 +862,10 @@ def submitFeedback():
             flash('Content is required!')
         else:
             db = mysql.connector.connect(
-            host = "db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
-            user = "doadmin",
-            password = "AVNS_ItKG7fksQ2ww_rQ7MLX",
-            database = "market_prophet",
-            port = 25060
+            host = "localhost",
+            user = "root",
+            password = "",
+            database = "market_prophet"
             )
             cursor = db.cursor()
             insertUserFeedBack = "INSERT INTO Feedback(Title, Content) VALUES (%s, %s)"
@@ -894,11 +884,10 @@ def viewFeedback():
     feedback = []
 
     db = mysql.connector.connect(
-            host = "db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
-            user = "doadmin",
-            password = "AVNS_ItKG7fksQ2ww_rQ7MLX",
-            database = "market_prophet",
-            port = 25060
+            host = "localhost",
+            user = "root",
+            password = "",
+            database = "market_prophet"
             )
     cursor = db.cursor()
     getFeedback = "SELECT FeedbackID, Title, Content FROM Feedback"
@@ -915,11 +904,10 @@ def deleteFeedback():
         feedbackID = request.form.get("deleteFeedback")
 
         db = mysql.connector.connect(
-            host = "db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
-            user = "doadmin",
-            password = "AVNS_ItKG7fksQ2ww_rQ7MLX",
-            database = "market_prophet",
-            port = 25060
+            host = "localhost",
+            user = "root",
+            password = "",
+            database = "market_prophet"
             )
 
         cursor = db.cursor()
@@ -954,11 +942,10 @@ def adminSearch():
         username = request.form["username"]
 
         db = mysql.connector.connect(
-            host = "db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
-            user = "doadmin",
-            password = "AVNS_ItKG7fksQ2ww_rQ7MLX",
-            database = "market_prophet",
-            port = 25060
+            host = "localhost",
+            user = "root",
+            password = "",
+            database = "market_prophet"
         )
 
         cursor = db.cursor(buffered=True)
@@ -997,11 +984,10 @@ def adminUpdate():
             if checkDeleteBtn is not None:
                 username = request.form["username"]
                 db = mysql.connector.connect(
-                    host = "db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
-                    user = "doadmin",
-                    password = "AVNS_ItKG7fksQ2ww_rQ7MLX",
-                    database = "market_prophet",
-                    port = 25060
+                    host = "localhost",
+                    user = "root",
+                    password = "",
+                    database = "market_prophet"
                 )
                 cursor = db.cursor()
                 getUserID = """SELECT UserID from Users WHERE Username = '%s'""" % (
@@ -1021,11 +1007,10 @@ def adminUpdate():
                 userDetails = []
                 username = request.form["username"]
                 db = mysql.connector.connect(
-                    host = "db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
-                    user = "doadmin",
-                    password = "AVNS_ItKG7fksQ2ww_rQ7MLX",
-                    database = "market_prophet",
-                    port = 25060
+                    host = "localhost",
+                    user = "root",
+                    password = "",
+                    database = "market_prophet"
                 )
                 cursor = db.cursor()
                 getUserDetails = (
@@ -1047,11 +1032,10 @@ def adminUpdate():
                 firstName = request.form["fname"]
                 lastName = request.form["lname"]
                 db = mysql.connector.connect(
-                    host = "db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
-                    user = "doadmin",
-                    password = "AVNS_ItKG7fksQ2ww_rQ7MLX",
-                    database = "market_prophet",
-                    port = 25060
+                    host = "localhost",
+                    user = "root",
+                    password = "",
+                    database = "market_prophet"
                 )
                 userDetails = []
                 cursor = db.cursor()

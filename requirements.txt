@@ -54,5 +54,3 @@ yfinance==0.2.40
 mplfinance==0.12.10b0
 pmdarima==2.0.4
 statsmodels==0.14.2
-
-

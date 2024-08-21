@@ -1,1 +1,4 @@
 .venv/
+Procfile/
+Procfile.windows/
+runtime.txt/
