@@ -1,0 +1,27 @@
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY AUTO_INCREMENT,
+    Username VARCHAR(255) NOT NULL UNIQUE,
+    Password VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) NOT NULL UNIQUE,
+    FirstName VARCHAR(255),
+    LastName VARCHAR(255),
+    TrialAcc int,
+    startDate Date,
+    trialPeriod int,
+    Role ENUM('User', 'Admin') NOT NULL DEFAULT 'User'
+);
+
+CREATE TABLE Watchlist (
+    WatchlistID INT PRIMARY KEY AUTO_INCREMENT,
+    UserID INT,
+    StockTicker VARCHAR(255),
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+    ON DELETE CASCADE
+    
+);
+
+CREATE TABLE Feedback (
+    FeedbackID INT PRIMARY KEY AUTO_INCREMENT,
+    Title VARCHAR(255),
+    Content VARCHAR(255)
+);
